@@ -194,13 +194,13 @@
               <th scope="row">Secret value expiration</th>
               <td>yes</td>
               <td>no</td>
-              <td>no (TTL is different)</td>
+              <td>no<sup>2</sup></td>
           </tr>
           <tr>
               <th scope="row">Encrypted metadata</th>
-              <td>partial<sup>2</sup> </td>
+              <td>partial<sup>3</sup> </td>
               <td>no</td>
-              <td>partial (no difference between adding secrets and metadata)</td>
+              <td>partial</td>
           </tr>
           <tr>
               <th scope="row">Padding to obfuscate length</th>
@@ -224,9 +224,11 @@
       </table>
 
       <p>
-          <sup>1: Assuming Key/Value or Cubbyhole Secret Backends</sup>
+          <sup>1: Assuming Key/Value or Cubbyhole Secret Backends.</sup>
           <br>
-          <sup>2: Only the metadata that is needed for fast filtering is exposed, e.g. name, version, notBefore, notAfter, and state (enabled, disabled, compromised). All other data is padded and encrypted, including: comment, created/modified timestamps, and up to 50kB of user data.
+          <sup>2: TTL is about telling the client how often they should refresh, not when the secret value itself expires.</sup>
+          <br>
+          <sup>3: Only the metadata that is needed for fast filtering is exposed, e.g. name, version, notBefore, notAfter, and state (enabled, disabled, compromised). All other data is padded and encrypted, including: comment, created/modified timestamps, and up to 50kB of user data.
           The integrity of the data that is not encrypted is protected against tampering via the encryption context of the data that is encrypted.</sup>
       </p>
   </div>
